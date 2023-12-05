@@ -5,24 +5,55 @@ const llistaParaules = [
 ];
 
 let paraulaSecreta = llistaParaules[Math.floor(Math.random() * 3)].toUpperCase();
+let gions;
+let intetns = 7;
+
 paraulaSecreta = paraulaSecreta.split("");
 
-paraulaSecretaLletras = [];
+console.log(paraulaSecreta);
+
+let paraulaSecretaLletras = [];
 for(let i = 0;i<paraulaSecreta.length;i++) {
     paraulaSecretaLletras.push(false);
 }
 
-let gions = "";
+let gionsArrays = [];
 for(let i = 0;i<paraulaSecreta.length;i++) {
-    gions += "_ ";
+    gionsArrays.push("_ ");
 }
-
-let paraulaDiv = document.getElementById("paraula");
-paraulaDiv.innerHTML = "<span>" + gions + "</span>";
+aString();
 
 let lletras = document.getElementById("lletras");
-lletras.addEventListener("click");
 
-function revisarLletra(e) {
-    e.target.value;
+
+// FUNCIONS
+
+function aString() {
+    gions = gionsArrays.join(" ");
+    let paraulaDiv = document.getElementById("paraula");
+    paraulaDiv.innerHTML = "<span>" + gions + "</span>";
+    let intetnsSpans = document.getElementById("intents");
+    intetnsSpans.innerText =  intetns;
 }
+
+// EVENTS
+lletras.addEventListener("click", ((e) => {
+    let paraulaSecretaLletrasCopia = paraulaSecretaLletras.slice();
+    if(e.target.classList.contains("lletra")) {
+        for(let i = 0; i<paraulaSecreta.length;i++) {
+            if(paraulaSecreta[i] == e.target.innerHTML) {
+                paraulaSecretaLletras[i] = true;
+                gionsArrays[i] = paraulaSecreta[i];
+            }
+        }
+        console.log(paraulaSecretaLletras);
+        if(JSON.stringify(paraulaSecretaLletras) === JSON.stringify(paraulaSecretaLletrasCopia)) {
+            e.target.classList.add("incorrecte");
+            intetns--;
+        } else {
+            e.target.classList.add("correcte");
+        }
+        console.log(e.target.classList);
+        aString();
+    }
+}));

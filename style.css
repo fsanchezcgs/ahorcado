@@ -50,8 +50,12 @@ p {
 
 .correcte {
     background-color: rgb(4, 156, 4);
+    cursor: default;
+    pointer-events:none;
 }
 
 .incorrecte {
     background-color: red;
+    cursor: default;
+    pointer-events:none;
 }
