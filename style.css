@@ -60,6 +60,19 @@ p {
     pointer-events:none;
 }
 
+.temps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.temps div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .envoltorio-popup-guanyat, .envoltorio-popup-perdut {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
